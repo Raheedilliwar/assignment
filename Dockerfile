@@ -1,14 +1,15 @@
-# Use an official Python image
-FROM python:3.9-slim
+FROM python:latest
 
-# Set working directory
 WORKDIR /app
 
-# Copy dependencies and app
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+
+RUN pip install --upgrade pip
+
+RUN pip install -r requirements.txt
+
 COPY . .
 
-# Run app
-CMD ["python", "app.py"]
+EXPOSE 5000
 
+CMD ["python" , "app.py"]
